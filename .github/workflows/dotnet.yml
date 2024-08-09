@@ -20,23 +20,29 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
+        
     - name: Restore dependencies
       run: dotnet restore
-      working-directory: 93-SeongOn2E/SeongOn2eHomePage
-    - name: Build
+      working-directory: './Client/Client.csproj'
+ 
+    - name: Build Client project
       run: dotnet build --no-restore
-      working-directory: 93-SeongOn2E/SeongOn2eHomePage
-    - name: Test
+      working-directory: './Client/Client.csproj'
+   
+    - name: Test Client project
       run: dotnet test --no-build --verbosity normal
-      working-directory: 93-SeongOn2E/SeongOn2eHomePage
+      working-directory: './Client/Client.csproj'
+      
     - name: Publish with dotnet
       run: dotnet publish --configuration Release --output build
-      working-directory: 93-SeongOn2E/SeongOn2eHomePage
-    - name: Deploy to Github Pages
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+      working-directory: './Client/Client.csproj'
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        ACCESS_TOKEN: ${{ secrets.personal-access-token}}
-        BASE_BRANCH: main # The branch the action should deploy from.
-        BRANCH: master # The branch the action should deploy to.
-        FOLDER: 93-SeongOn2E/SeongOn2eHomePage/build/wwwroot # The folder the action should deploy.
-        SINGLE_COMMIT: true
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build/wwwroot
+
+    - name: Clean up build artifacts
+      if: always() # 작업이 성공하거나 실패하더라도 항상 실행
+      run: rm -rf build
