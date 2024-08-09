@@ -33,7 +33,7 @@ jobs:
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.Seong_One_Token }}
         publish_dir: ./build/wwwroot
         force_orphan: true   # 강제로 gh-pages 브랜치 생성 및 배포
         keep_files: false    # 이전 파일을 유지하지 않음
