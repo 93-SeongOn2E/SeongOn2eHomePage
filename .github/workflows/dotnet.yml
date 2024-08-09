@@ -23,19 +23,19 @@ jobs:
         
     - name: Restore dependencies
       run: dotnet restore
-      working-directory: './Client/Client.csproj'
+      working-directory: '../Client/Client.csproj'
  
     - name: Build Client project
       run: dotnet build --no-restore
-      working-directory: './Client/Client.csproj'
+      working-directory: '../Client/Client.csproj'
    
     - name: Test Client project
       run: dotnet test --no-build --verbosity normal
-      working-directory: './Client/Client.csproj'
+      working-directory: '../Client/Client.csproj'
       
     - name: Publish with dotnet
       run: dotnet publish --configuration Release --output build
-      working-directory: './Client/Client.csproj'
+      working-directory: '../Client/Client.csproj'
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
