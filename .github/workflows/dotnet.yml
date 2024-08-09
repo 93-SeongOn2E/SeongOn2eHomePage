@@ -22,13 +22,13 @@ jobs:
         dotnet-version: 6.0.x
         
     - name: Restore dependencies
-      run: dotnet restore './Client/SeongOn2eHomePage.Client.csproj'
-    #Client project Build
-    - name: Build Client project
-      run: dotnet publish './Client/SeongOn2eHomePage.Client.csproj' -c Release -o build
+      run: dotnet restore './Server/SeongOn2eHomePage.Server.csproj'
+    #Server project Build
+    - name: Build Server project
+      run: dotnet publish './Server/SeongOn2eHomePage.Server.csproj' -c Release -o build
       
-    - name: Test Client project
-      run: dotnet test './Client/SeongOn2eHomePage.Client.csproj' -c Release -o build
+    - name: Test Server project
+      run: dotnet test './Server/SeongOn2eHomePage.Server.csproj' -c Release -o build
     #Git Page 배포
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
